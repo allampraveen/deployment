@@ -1,6 +1,6 @@
 {
-    "name": "smsg/deployment",
-    "description": "Deployment Modules",
+    "name": "smsg/deployer",
+    "description": "Deployment",
     "type": "craft-plugin",
     "version": "1.0.0",
     "keywords": [
@@ -8,17 +8,17 @@
         "cms",
         "craftcms",
         "craft-plugin",
-        "deployment"
+        "deployer"
     ],
     "support": {
-        "docs": "https://github.com/https://github.com/allampraveen/deployment/deployment/blob/master/README.md",
-        "issues": "https://github.com/https://github.com/allampraveen/deployment/deployment/issues"
+        "docs": "https://github.com/https://github.com/allampraveen/deployment/deployer/blob/master/README.md",
+        "issues": "https://github.com/https://github.com/allampraveen/deployment/deployer/issues"
     },
     "license": "MIT",
     "authors": [
         {
             "name": "Praveen",
-            "homepage": "smsglobal.com"
+            "homepage": "https://github.com/allampraveen/"
         }
     ],
     "require": {
@@ -26,15 +26,15 @@
     },
     "autoload": {
         "psr-4": {
-          "smsg\\deployment\\": "src/"
+          "smsg\\deployer\\": "src/"
         }
     },
     "extra": {
-        "name": "Deployment",
-        "handle": "deployment",
-        "hasCpSettings": true,
+        "name": "deployer",
+        "handle": "deployer",
+        "hasCpSettings": false,
         "hasCpSection": true,
-        "changelogUrl": "https://raw.githubusercontent.com/https://github.com/allampraveen/deployment/deployment/master/CHANGELOG.md",
-        "class": "smsg\\deployment\\Deployment"
+        "changelogUrl": "https://raw.githubusercontent.com/https://github.com/allampraveen/deployment/deployer/master/CHANGELOG.md",
+        "class": "smsg\\deployer\\Deployer"
     }
 }

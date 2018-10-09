@@ -1,16 +1,16 @@
 <?php
 /**
- * Deployment plugin for Craft CMS 3.x
+ * deployer plugin for Craft CMS 3.x
  *
- * Deployment Modules
+ * Deployment
  *
- * @link      smsglobal.com
+ * @link      https://github.com/allampraveen/
  * @copyright Copyright (c) 2018 Praveen
  */
 
-namespace smsg\deployment\console\controllers;
+namespace smsg\deployer\console\controllers;
 
-use smsg\deployment\Deployment;
+use smsg\deployer\Deployer;
 
 use Craft;
 use yii\console\Controller;
@@ -30,15 +30,15 @@ use yii\helpers\Console;
  *
  * The actionIndex() method is what is executed if no sub-commands are supplied, e.g.:
  *
- * ./craft deployment/default
+ * ./craft deployer/default
  *
  * Actions must be in 'kebab-case' so actionDoSomething() maps to 'do-something',
  * and would be invoked via:
  *
- * ./craft deployment/default/do-something
+ * ./craft deployer/default/do-something
  *
  * @author    Praveen
- * @package   Deployment
+ * @package   Deployer
  * @since     1.0.0
  */
 class DefaultController extends Controller
@@ -47,7 +47,7 @@ class DefaultController extends Controller
     // =========================================================================
 
     /**
-     * Handle deployment/default console commands
+     * Handle deployer/default console commands
      *
      * The first line of this method docblock is displayed as the description
      * of the Console Command in ./craft help
@@ -64,7 +64,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Handle deployment/default/do-something console commands
+     * Handle deployer/default/do-something console commands
      *
      * The first line of this method docblock is displayed as the description
      * of the Console Command in ./craft help
