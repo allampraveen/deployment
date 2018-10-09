@@ -1,7 +1,7 @@
 /**
  * Deployment plugin for Craft CMS
  *
- * Deploy Utility JS
+ * Deploy Field JS
  *
  * @author    Praveen
  * @copyright Copyright (c) 2018 Praveen

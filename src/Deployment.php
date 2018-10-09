@@ -2,7 +2,7 @@
 /**
  * Deployment plugin for Craft CMS 3.x
  *
- * Deployment
+ * Craft Deployment
  *
  * @link      smsglobal.com
  * @copyright Copyright (c) 2018 Praveen
@@ -10,15 +10,14 @@
 
 namespace smsg\deployment;
 
-use smsg\deployment\utilities\Deploy as DeployUtility;
 
 use Craft;
 use craft\base\Plugin;
 use craft\services\Plugins;
 use craft\events\PluginEvent;
 use craft\console\Application as ConsoleApplication;
-use craft\services\Utilities;
-use craft\events\RegisterComponentTypesEvent;
+use craft\web\UrlManager;
+use craft\events\RegisterUrlRulesEvent;
 
 use yii\base\Event;
 
@@ -84,12 +83,21 @@ class Deployment extends Plugin
             $this->controllerNamespace = 'smsg\deployment\console\controllers';
         }
 
-        // Register our utilities
+        // Register our site routes
         Event::on(
-            Utilities::class,
-            Utilities::EVENT_REGISTER_UTILITY_TYPES,
-            function (RegisterComponentTypesEvent $event) {
-                $event->types[] = DeployUtility::class;
+            UrlManager::class,
+            UrlManager::EVENT_REGISTER_SITE_URL_RULES,
+            function (RegisterUrlRulesEvent $event) {
+                $event->rules['siteActionTrigger1'] = 'deployment/deployment';
+            }
+        );
+
+        // Register our CP routes
+        Event::on(
+            UrlManager::class,
+            UrlManager::EVENT_REGISTER_CP_URL_RULES,
+            function (RegisterUrlRulesEvent $event) {
+                $event->rules['cpActionTrigger1'] = 'deployment/deployment/do-something';
             }
         );
 

@@ -1,6 +1,6 @@
 {
     "name": "smsg/deployment",
-    "description": "Deployment",
+    "description": "Craft Deployment",
     "type": "craft-plugin",
     "version": "1.0.0",
     "keywords": [

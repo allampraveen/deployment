@@ -2,7 +2,7 @@
 /**
  * Deployment plugin for Craft CMS 3.x
  *
- * Deployment
+ * Craft Deployment
  *
  * @link      smsglobal.com
  * @copyright Copyright (c) 2018 Praveen

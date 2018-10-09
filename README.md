@@ -1,6 +1,6 @@
 # Deployment plugin for Craft CMS 3.x
 
-Deployment
+Craft Deployment
 
 ![Screenshot](resources/img/plugin-logo.png)
 

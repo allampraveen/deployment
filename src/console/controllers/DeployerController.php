@@ -2,7 +2,7 @@
 /**
  * Deployment plugin for Craft CMS 3.x
  *
- * Deployment
+ * Craft Deployment
  *
  * @link      smsglobal.com
  * @copyright Copyright (c) 2018 Praveen
@@ -17,7 +17,7 @@ use yii\console\Controller;
 use yii\helpers\Console;
 
 /**
- * Deployment Command
+ * Deployer Command
  *
  * The first line of this class docblock is displayed as the description
  * of the Console Command in ./craft help
@@ -30,24 +30,24 @@ use yii\helpers\Console;
  *
  * The actionIndex() method is what is executed if no sub-commands are supplied, e.g.:
  *
- * ./craft deployment/deployment
+ * ./craft deployment/deployer
  *
  * Actions must be in 'kebab-case' so actionDoSomething() maps to 'do-something',
  * and would be invoked via:
  *
- * ./craft deployment/deployment/do-something
+ * ./craft deployment/deployer/do-something
  *
  * @author    Praveen
  * @package   Deployment
  * @since     1.0.0
  */
-class DeploymentController extends Controller
+class DeployerController extends Controller
 {
     // Public Methods
     // =========================================================================
 
     /**
-     * Handle deployment/deployment console commands
+     * Handle deployment/deployer console commands
      *
      * The first line of this method docblock is displayed as the description
      * of the Console Command in ./craft help
@@ -58,13 +58,13 @@ class DeploymentController extends Controller
     {
         $result = 'something';
 
-        echo "Welcome to the console DeploymentController actionIndex() method\n";
+        echo "Welcome to the console DeployerController actionIndex() method\n";
 
         return $result;
     }
 
     /**
-     * Handle deployment/deployment/do-something console commands
+     * Handle deployment/deployer/do-something console commands
      *
      * The first line of this method docblock is displayed as the description
      * of the Console Command in ./craft help
@@ -75,7 +75,7 @@ class DeploymentController extends Controller
     {
         $result = 'something';
 
-        echo "Welcome to the console DeploymentController actionDoSomething() method\n";
+        echo "Welcome to the console DeployerController actionDoSomething() method\n";
 
         return $result;
     }

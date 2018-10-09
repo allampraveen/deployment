@@ -2,20 +2,20 @@
 /**
  * Deployment plugin for Craft CMS 3.x
  *
- * Deployment
+ * Craft Deployment
  *
  * @link      smsglobal.com
  * @copyright Copyright (c) 2018 Praveen
  */
 
-namespace smsg\deployment\assetbundles\deployercpsection;
+namespace smsg\deployment\assetbundles\deploycpsection;
 
 use Craft;
 use craft\web\AssetBundle;
 use craft\web\assets\cp\CpAsset;
 
 /**
- * DeployerCPSectionAsset AssetBundle
+ * DeployCPSectionAsset AssetBundle
  *
  * AssetBundle represents a collection of asset files, such as CSS, JS, images.
  *
@@ -32,7 +32,7 @@ use craft\web\assets\cp\CpAsset;
  * @package   Deployment
  * @since     1.0.0
  */
-class DeployerCPSectionAsset extends AssetBundle
+class DeployCPSectionAsset extends AssetBundle
 {
     // Public Methods
     // =========================================================================
@@ -43,7 +43,7 @@ class DeployerCPSectionAsset extends AssetBundle
     public function init()
     {
         // define the path that your publishable resources live
-        $this->sourcePath = "@smsg/deployment/assetbundles/deployercpsection/dist";
+        $this->sourcePath = "@smsg/deployment/assetbundles/deploycpsection/dist";
 
         // define the dependencies
         $this->depends = [
@@ -53,11 +53,11 @@ class DeployerCPSectionAsset extends AssetBundle
         // define the relative path to CSS/JS files that should be registered with the page
         // when this asset bundle is registered
         $this->js = [
-            'js/Deployer.js',
+            'js/Deploy.js',
         ];
 
         $this->css = [
-            'css/Deployer.css',
+            'css/Deploy.css',
         ];
 
         parent::init();
