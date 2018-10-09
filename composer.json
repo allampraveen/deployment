@@ -1,0 +1,40 @@
+{
+    "name": "smsg/deployment",
+    "description": "Deployment Modules",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "deployment"
+    ],
+    "support": {
+        "docs": "https://github.com/https://github.com/allampraveen/deployment/deployment/blob/master/README.md",
+        "issues": "https://github.com/https://github.com/allampraveen/deployment/deployment/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Praveen",
+            "homepage": "smsglobal.com"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1"
+    },
+    "autoload": {
+        "psr-4": {
+          "smsg\\deployment\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Deployment",
+        "handle": "deployment",
+        "hasCpSettings": true,
+        "hasCpSection": true,
+        "changelogUrl": "https://raw.githubusercontent.com/https://github.com/allampraveen/deployment/deployment/master/CHANGELOG.md",
+        "class": "smsg\\deployment\\Deployment"
+    }
+}

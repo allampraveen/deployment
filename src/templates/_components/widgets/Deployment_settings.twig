@@ -1,0 +1,26 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Deployment plugin for Craft CMS
+ *
+ * Deployment Widget Settings
+ *
+ * @author    Praveen
+ * @copyright Copyright (c) 2018 Praveen
+ * @link      smsglobal.com
+ * @package   Deployment
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("smsg\\deployment\\assetbundles\\deployment\\DeploymentAsset") %}
+
+{{ forms.textField({
+    label: 'Message',
+    instructions: 'Enter a message here.',
+    id: 'message',
+    name: 'message',
+    value: widget['message']})
+}}

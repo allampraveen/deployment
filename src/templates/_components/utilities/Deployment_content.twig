@@ -1,0 +1,24 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Deployment plugin for Craft CMS
+ *
+ * Deployment Utility Content
+ *
+ * @author    Praveen
+ * @copyright Copyright (c) 2018 Praveen
+ * @link      smsglobal.com
+ * @package   Deployment
+ * @since     1.0.0
+ */
+#}
+
+<h1>Deployment</h1>
+
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@smsg/deployment/assetbundles/deploymentutility/dist', true) ~ '/img/Deployment-icon.svg' %}
+
+<img src="{{ iconUrl }}" height="64" width="64" />
+
+<p>Your Utility content goes here</p>
+
+<p>{{ someVar }}</p>

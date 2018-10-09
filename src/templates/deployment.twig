@@ -1,0 +1,46 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Deployment plugin for Craft CMS 3.x
+ *
+ * Deployment index.twig
+ *
+ * @author    Praveen
+ * @copyright Copyright (c) 2018 Praveen
+ * @link      smsglobal.com
+ * @package   Deployment
+ * @since     1.0.0
+ */
+#}
+
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("smsg\\deployment\\assetbundles\\deployment\\DeploymentAsset") %}
+{% do view.registerAssetBundle("smsg\\deployment\\assetbundles\\deploymentcpsection\\DeploymentCPSectionAsset") %}
+
+{# Link for the ? icon at the bottom of the page #}
+{% set docsUrl = "https://github.com/https://github.com/allampraveen/deployment/deployment/blob/master/README.md" %}
+
+{# The title of this CP section #}
+{% set title = "Deployment" %}
+
+{# The URL to this plugin's base CP section #}
+{% set pluginCpUrl = url('deployment') %}
+
+{# Get a URL to an image in our AssetBundle #}
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@smsg/deployment/assetbundles/deploymentcpsection/dist', true) ~ '/img/Deployment-icon.svg' %}
+
+{# Content that should appear in the page header#}
+{% set extraPageHeaderHtml %}
+    <div class="buttons">
+        <a href="{{ pluginCpUrl }}" class="btn submit add icon">{{ "Click Me!"|t('deployment') }}</a>
+    </div>
+{% endset %}
+
+{# The content of the CP Section#}
+{% set content %}
+    <h2>{{ "Deployment CP Section body goes here"|t('deployment') }}</h2>
+    <img src="{{ iconUrl }}" height="64" width="64" />
+    <p class="textline"></p>
+{% endset %}
