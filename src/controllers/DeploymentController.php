@@ -48,6 +48,7 @@ class DeploymentController extends Controller
      */
     protected $allowAnonymous = ['index', 'do-something'];
 
+
     // Public Methods
     // =========================================================================
 
@@ -59,9 +60,13 @@ class DeploymentController extends Controller
      */
     public function actionIndex()
     {
-        $result = 'Welcome to the DeploymentController actionIndex() method';
+        $success="Deployment";
+        $variables['success'] = $success;
+        return $this->renderTemplate(
+            'deployment/index',
+            $variables
+        );
 
-        return $result;
     }
 
     /**
@@ -75,5 +80,98 @@ class DeploymentController extends Controller
         $result = 'Welcome to the DeploymentController actionDoSomething() method';
 
         return $result;
+    }
+
+    public function actionPrepare(){
+
+        $this->requirePostRequest();
+        $request = \Craft::$app->request;
+        \Craft::$app->session->setNotice(
+            \Craft::t('app', 'Prepare Live')
+        );
+
+        $ch_git = curl_init();
+
+        curl_setopt($ch_git, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch_git, CURLOPT_HTTPHEADER, array('PRIVATE-TOKEN: oaz7fVaLKwpV-F5dPxfK', 'Content-Type: application/json'));
+        curl_setopt($ch_git, CURLOPT_URL, 'http://vines.smsglobal.local/api/v4/projects/103/trigger/pipeline');
+        curl_setopt($ch_git, CURLOPT_POST, true);
+        $info = array(
+            'ref' => 'master',
+            'token' => '4252bfef1e286d4ab578cc3508bedd'
+        );
+        $payload = json_encode($info, JSON_PRETTY_PRINT);
+        curl_setopt($ch_git, CURLOPT_POSTFIELDS, $payload);
+        $res = curl_exec($ch_git);
+
+        $response = json_decode($res);
+
+        $id = $response->id;
+
+        Craft::$app->getSession()->set('deployer', $id);
+
+        $deployerJobId = Craft::$app->getSession()->get('deployer');
+
+        $ch_git = curl_init();
+
+        curl_setopt($ch_git, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch_git, CURLOPT_HTTPHEADER, array('PRIVATE-TOKEN: oaz7fVaLKwpV-F5dPxfK', 'Content-Type: application/json'));
+        curl_setopt($ch_git, CURLOPT_URL, 'http://vines.smsglobal.local/api/v4/projects/103/pipelines/'.$deployerJobId.'/jobs');
+        $res = curl_exec($ch_git);
+
+        $response = json_decode($res);
+        $prepareJobId='';
+        $deployJobId = '';
+        foreach($response as $item){
+            if($item->name == 'prepare_deployer'){
+                $prepareJobId = $item->id;
+            }
+            if($item->name == 'prod_deployer'){
+                $deployJobId = $item->id;
+            }
+        }
+        Craft::$app->getSession()->set('prepareJobId', $prepareJobId);
+        Craft::$app->getSession()->set('deployJobId', $deployJobId);
+
+        $ch_git = curl_init();
+
+        curl_setopt($ch_git, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch_git, CURLOPT_HTTPHEADER, array('PRIVATE-TOKEN: oaz7fVaLKwpV-F5dPxfK', 'Content-Type: application/json'));
+        curl_setopt($ch_git, CURLOPT_URL, 'http://vines.smsglobal.local/api/v4/projects/103/jobs/'.$prepareJobId.'/play');
+        curl_setopt($ch_git, CURLOPT_POST, true);
+        $res = curl_exec($ch_git);
+        $response = json_decode($res);
+        $success="Prepare";
+        $variables['success'] = $success;
+        return $this->renderTemplate(
+            'deployment/index',
+            $variables
+        );
+    }
+
+    public function actionPublish(){
+        $this->requirePostRequest();
+        $request = \Craft::$app->request;
+        \Craft::$app->session->setNotice(
+            \Craft::t('app', 'Publish')
+        );
+        $success="Publish";
+        $variables['success'] = $success;
+        $deployJobId = Craft::$app->getSession()->get('deployJobId');
+
+
+        $ch_git = curl_init();
+
+        curl_setopt($ch_git, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch_git, CURLOPT_HTTPHEADER, array('PRIVATE-TOKEN: oaz7fVaLKwpV-F5dPxfK', 'Content-Type: application/json'));
+        curl_setopt($ch_git, CURLOPT_URL, 'http://vines.smsglobal.local/api/v4/projects/103/jobs/'.$deployJobId.'/play');
+        curl_setopt($ch_git, CURLOPT_POST, true);
+        $res = curl_exec($ch_git);
+        $response = json_decode($res);
+
+        return $this->renderTemplate(
+            'deployment/index',
+            $variables
+        );
     }
 }

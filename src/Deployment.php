@@ -18,6 +18,7 @@ use craft\events\PluginEvent;
 use craft\console\Application as ConsoleApplication;
 use craft\web\UrlManager;
 use craft\events\RegisterUrlRulesEvent;
+use smsg\deployment\models\Settings;
 
 use yii\base\Event;
 
@@ -143,4 +144,31 @@ class Deployment extends Plugin
     // Protected Methods
     // =========================================================================
 
-}
+// Protected Methods
+    // =========================================================================
+
+    /**
+     * Creates and returns the model used to store the plugin’s settings.
+     *
+     * @return \craft\base\Model|null
+     */
+    protected function createSettingsModel()
+    {
+        return new Settings();
+    }
+
+    /**
+     * Returns the rendered settings HTML, which will be inserted into the content
+     * block on the settings page.
+     *
+     * @return string The rendered settings HTML
+     */
+    protected function settingsHtml(): string
+    {
+        return Craft::$app->view->renderTemplate(
+            'deployment/settings',
+            [
+                'settings' => $this->getSettings()
+            ]
+        );
+    }}

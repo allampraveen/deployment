@@ -1,0 +1,28 @@
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+
+{# The title of this CP section #}
+{% set title = "Deployment" %}
+{% block content %}
+    {% if  success is defined %}
+        {{ success }}
+    {% endif %}
+    <form id="prepare" class="deployment" method="post" accept-charset="UTF-8">
+        {{ csrfInput() }}
+        <input type="hidden" name="action" value="deployment/deployment/prepare">
+        <div class="buttons">
+            <input type="submit" class="btn submit" value="{{ 'Prepare Live'|t('app') }}"/>
+            <div class="utility-status"></div>
+        </div>
+    </form>
+    <form id="deploy" class="deployment" method="post" accept-charset="UTF-8">
+        {{ csrfInput() }}
+
+        <input type="hidden" name="action" value="deployment/deployment/publish">
+        <div class="buttons">
+            <input type="submit" class="btn submit" value="{{ 'Publish'|t('app') }}"/>
+            <div class="utility-status"></div>
+        </div>
+    </form>
+{% endblock %}
