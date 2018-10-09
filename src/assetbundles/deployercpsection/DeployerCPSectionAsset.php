@@ -1,14 +1,14 @@
 <?php
 /**
- * deployer plugin for Craft CMS 3.x
+ * Deployment plugin for Craft CMS 3.x
  *
  * Deployment
  *
- * @link      https://github.com/allampraveen/
+ * @link      smsglobal.com
  * @copyright Copyright (c) 2018 Praveen
  */
 
-namespace smsg\deployer\assetbundles\deployercpsection;
+namespace smsg\deployment\assetbundles\deployercpsection;
 
 use Craft;
 use craft\web\AssetBundle;
@@ -29,7 +29,7 @@ use craft\web\assets\cp\CpAsset;
  * http://www.yiiframework.com/doc-2.0/guide-structure-assets.html
  *
  * @author    Praveen
- * @package   Deployer
+ * @package   Deployment
  * @since     1.0.0
  */
 class DeployerCPSectionAsset extends AssetBundle
@@ -43,7 +43,7 @@ class DeployerCPSectionAsset extends AssetBundle
     public function init()
     {
         // define the path that your publishable resources live
-        $this->sourcePath = "@smsg/deployer/assetbundles/deployercpsection/dist";
+        $this->sourcePath = "@smsg/deployment/assetbundles/deployercpsection/dist";
 
         // define the dependencies
         $this->depends = [

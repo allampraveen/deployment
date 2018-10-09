@@ -1,16 +1,16 @@
 <?php
 /**
- * deployer plugin for Craft CMS 3.x
+ * Deployment plugin for Craft CMS 3.x
  *
  * Deployment
  *
- * @link      https://github.com/allampraveen/
+ * @link      smsglobal.com
  * @copyright Copyright (c) 2018 Praveen
  */
 
-namespace smsg\deployer;
+namespace smsg\deployment;
 
-use smsg\deployer\utilities\Deployer as DeployerUtility;
+use smsg\deployment\utilities\Deploy as DeployUtility;
 
 use Craft;
 use craft\base\Plugin;
@@ -33,20 +33,20 @@ use yii\base\Event;
  * https://craftcms.com/docs/plugins/introduction
  *
  * @author    Praveen
- * @package   Deployer
+ * @package   Deployment
  * @since     1.0.0
  *
  */
-class Deployer extends Plugin
+class Deployment extends Plugin
 {
     // Static Properties
     // =========================================================================
 
     /**
      * Static property that is an instance of this plugin class so that it can be accessed via
-     * Deployer::$plugin
+     * Deployment::$plugin
      *
-     * @var Deployer
+     * @var Deployment
      */
     public static $plugin;
 
@@ -65,7 +65,7 @@ class Deployer extends Plugin
 
     /**
      * Set our $plugin static property to this class so that it can be accessed via
-     * Deployer::$plugin
+     * Deployment::$plugin
      *
      * Called after the plugin class is instantiated; do any one-time initialization
      * here such as hooks and events.
@@ -81,7 +81,7 @@ class Deployer extends Plugin
 
         // Add in our console commands
         if (Craft::$app instanceof ConsoleApplication) {
-            $this->controllerNamespace = 'smsg\deployer\console\controllers';
+            $this->controllerNamespace = 'smsg\deployment\console\controllers';
         }
 
         // Register our utilities
@@ -89,7 +89,7 @@ class Deployer extends Plugin
             Utilities::class,
             Utilities::EVENT_REGISTER_UTILITY_TYPES,
             function (RegisterComponentTypesEvent $event) {
-                $event->types[] = DeployerUtility::class;
+                $event->types[] = DeployUtility::class;
             }
         );
 
@@ -124,7 +124,7 @@ class Deployer extends Plugin
  */
         Craft::info(
             Craft::t(
-                'deployer',
+                'deployment',
                 '{name} plugin loaded',
                 ['name' => $this->name]
             ),

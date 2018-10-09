@@ -1,33 +1,33 @@
 <?php
 /**
- * deployer plugin for Craft CMS 3.x
+ * Deployment plugin for Craft CMS 3.x
  *
  * Deployment
  *
- * @link      https://github.com/allampraveen/
+ * @link      smsglobal.com
  * @copyright Copyright (c) 2018 Praveen
  */
 
-namespace smsg\deployer\utilities;
+namespace smsg\deployment\utilities;
 
-use smsg\deployer\Deployer;
-use smsg\deployer\assetbundles\deployerutility\DeployerUtilityAsset;
+use smsg\deployment\Deployment;
+use smsg\deployment\assetbundles\deployutility\DeployUtilityAsset;
 
 use Craft;
 use craft\base\Utility;
 
 /**
- * deployer Utility
+ * Deployment Utility
  *
  * Utility is the base class for classes representing Control Panel utilities.
  *
  * https://craftcms.com/docs/plugins/utilities
  *
  * @author    Praveen
- * @package   Deployer
+ * @package   Deployment
  * @since     1.0.0
  */
-class Deployer extends Utility
+class Deploy extends Utility
 {
     // Static
     // =========================================================================
@@ -39,7 +39,7 @@ class Deployer extends Utility
      */
     public static function displayName(): string
     {
-        return Craft::t('deployer', 'Deployer');
+        return Craft::t('deployment', 'Deploy');
     }
 
     /**
@@ -51,7 +51,7 @@ class Deployer extends Utility
      */
     public static function id(): string
     {
-        return 'deployer-deployer';
+        return 'deployment-deploy';
     }
 
     /**
@@ -61,7 +61,7 @@ class Deployer extends Utility
      */
     public static function iconPath()
     {
-        return Craft::getAlias("@smsg/deployer/assetbundles/deployerutility/dist/img/Deployer-icon.svg");
+        return Craft::getAlias("@smsg/deployment/assetbundles/deployutility/dist/img/Deploy-icon.svg");
     }
 
     /**
@@ -83,11 +83,11 @@ class Deployer extends Utility
      */
     public static function contentHtml(): string
     {
-        Craft::$app->getView()->registerAssetBundle(DeployerUtilityAsset::class);
+        Craft::$app->getView()->registerAssetBundle(DeployUtilityAsset::class);
 
         $someVar = 'Have a nice day!';
         return Craft::$app->getView()->renderTemplate(
-            'deployer/_components/utilities/Deployer_content',
+            'deployment/_components/utilities/Deploy_content',
             [
                 'someVar' => $someVar
             ]

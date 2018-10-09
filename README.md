@@ -1,4 +1,4 @@
-# deployer plugin for Craft CMS 3.x
+# Deployment plugin for Craft CMS 3.x
 
 Deployment
 
@@ -18,26 +18,26 @@ To install the plugin, follow these instructions.
 
 2. Then tell Composer to load the plugin:
 
-        composer require https://github.com/allampraveen/deployment/deployer
+        composer require https://github.com/allampraveen/deployment/deployment
 
-3. In the Control Panel, go to Settings → Plugins and click the “Install” button for deployer.
+3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Deployment.
 
-## deployer Overview
-
--Insert text here-
-
-## Configuring deployer
+## Deployment Overview
 
 -Insert text here-
 
-## Using deployer
+## Configuring Deployment
 
 -Insert text here-
 
-## deployer Roadmap
+## Using Deployment
+
+-Insert text here-
+
+## Deployment Roadmap
 
 Some things to do, and ideas for potential features:
 
 * Release it
 
-Brought to you by [Praveen](https://github.com/allampraveen/)
+Brought to you by [Praveen](smsglobal.com)

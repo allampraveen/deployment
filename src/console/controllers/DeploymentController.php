@@ -1,23 +1,23 @@
 <?php
 /**
- * deployer plugin for Craft CMS 3.x
+ * Deployment plugin for Craft CMS 3.x
  *
  * Deployment
  *
- * @link      https://github.com/allampraveen/
+ * @link      smsglobal.com
  * @copyright Copyright (c) 2018 Praveen
  */
 
-namespace smsg\deployer\console\controllers;
+namespace smsg\deployment\console\controllers;
 
-use smsg\deployer\Deployer;
+use smsg\deployment\Deployment;
 
 use Craft;
 use yii\console\Controller;
 use yii\helpers\Console;
 
 /**
- * Default Command
+ * Deployment Command
  *
  * The first line of this class docblock is displayed as the description
  * of the Console Command in ./craft help
@@ -30,24 +30,24 @@ use yii\helpers\Console;
  *
  * The actionIndex() method is what is executed if no sub-commands are supplied, e.g.:
  *
- * ./craft deployer/default
+ * ./craft deployment/deployment
  *
  * Actions must be in 'kebab-case' so actionDoSomething() maps to 'do-something',
  * and would be invoked via:
  *
- * ./craft deployer/default/do-something
+ * ./craft deployment/deployment/do-something
  *
  * @author    Praveen
- * @package   Deployer
+ * @package   Deployment
  * @since     1.0.0
  */
-class DefaultController extends Controller
+class DeploymentController extends Controller
 {
     // Public Methods
     // =========================================================================
 
     /**
-     * Handle deployer/default console commands
+     * Handle deployment/deployment console commands
      *
      * The first line of this method docblock is displayed as the description
      * of the Console Command in ./craft help
@@ -58,13 +58,13 @@ class DefaultController extends Controller
     {
         $result = 'something';
 
-        echo "Welcome to the console DefaultController actionIndex() method\n";
+        echo "Welcome to the console DeploymentController actionIndex() method\n";
 
         return $result;
     }
 
     /**
-     * Handle deployer/default/do-something console commands
+     * Handle deployment/deployment/do-something console commands
      *
      * The first line of this method docblock is displayed as the description
      * of the Console Command in ./craft help
@@ -75,7 +75,7 @@ class DefaultController extends Controller
     {
         $result = 'something';
 
-        echo "Welcome to the console DefaultController actionDoSomething() method\n";
+        echo "Welcome to the console DeploymentController actionDoSomething() method\n";
 
         return $result;
     }
