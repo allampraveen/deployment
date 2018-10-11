@@ -46,7 +46,7 @@ class DeploymentController extends Controller
      *         The actions must be in 'kebab-case'
      * @access protected
      */
-    protected $allowAnonymous = ['index', 'do-something'];
+    protected $allowAnonymous = ['index'];
 
 
     // Public Methods
@@ -69,19 +69,6 @@ class DeploymentController extends Controller
 
     }
 
-    /**
-     * Handle a request going to our plugin's actionDoSomething URL,
-     * e.g.: actions/deployment/deployment/do-something
-     *
-     * @return mixed
-     */
-    public function actionDoSomething()
-    {
-        $result = 'Welcome to the DeploymentController actionDoSomething() method';
-
-        return $result;
-    }
-
     public function actionPrepare(){
 
         $this->requirePostRequest();
@@ -90,15 +77,17 @@ class DeploymentController extends Controller
             \Craft::t('app', 'Prepare Live')
         );
 
+        $settings = \Craft::$app->getModule('deployment')->getSettings();
+    
         $ch_git = curl_init();
 
         curl_setopt($ch_git, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch_git, CURLOPT_HTTPHEADER, array('PRIVATE-TOKEN: oaz7fVaLKwpV-F5dPxfK', 'Content-Type: application/json'));
-        curl_setopt($ch_git, CURLOPT_URL, 'http://vines.smsglobal.local/api/v4/projects/103/trigger/pipeline');
+        curl_setopt($ch_git, CURLOPT_HTTPHEADER, array('PRIVATE-TOKEN: '. $settings->private_token, 'Content-Type: application/json'));
+        curl_setopt($ch_git, CURLOPT_URL, $settings->url . '/projects/'. $settings->project .'/trigger/pipeline');
         curl_setopt($ch_git, CURLOPT_POST, true);
         $info = array(
             'ref' => 'master',
-            'token' => '4252bfef1e286d4ab578cc3508bedd'
+            'token' => $settings->token
         );
         $payload = json_encode($info, JSON_PRETTY_PRINT);
         curl_setopt($ch_git, CURLOPT_POSTFIELDS, $payload);
@@ -115,8 +104,8 @@ class DeploymentController extends Controller
         $ch_git = curl_init();
 
         curl_setopt($ch_git, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch_git, CURLOPT_HTTPHEADER, array('PRIVATE-TOKEN: oaz7fVaLKwpV-F5dPxfK', 'Content-Type: application/json'));
-        curl_setopt($ch_git, CURLOPT_URL, 'http://vines.smsglobal.local/api/v4/projects/103/pipelines/'.$deployerJobId.'/jobs');
+        curl_setopt($ch_git, CURLOPT_HTTPHEADER, array('PRIVATE-TOKEN: '. $settings->private_token, 'Content-Type: application/json'));
+        curl_setopt($ch_git, CURLOPT_URL, $settings->url . '/projects/'.$settings->project . '/pipelines/'.$deployerJobId.'/jobs');
         $res = curl_exec($ch_git);
 
         $response = json_decode($res);
@@ -136,8 +125,8 @@ class DeploymentController extends Controller
         $ch_git = curl_init();
 
         curl_setopt($ch_git, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch_git, CURLOPT_HTTPHEADER, array('PRIVATE-TOKEN: oaz7fVaLKwpV-F5dPxfK', 'Content-Type: application/json'));
-        curl_setopt($ch_git, CURLOPT_URL, 'http://vines.smsglobal.local/api/v4/projects/103/jobs/'.$prepareJobId.'/play');
+        curl_setopt($ch_git, CURLOPT_HTTPHEADER, array('PRIVATE-TOKEN: '. $settings->private_token, 'Content-Type: application/json'));
+        curl_setopt($ch_git, CURLOPT_URL, $settings->url . '/projects/'.$settings->project. '/jobs/'.$prepareJobId.'/play');
         curl_setopt($ch_git, CURLOPT_POST, true);
         $res = curl_exec($ch_git);
         $response = json_decode($res);
@@ -159,12 +148,13 @@ class DeploymentController extends Controller
         $variables['success'] = $success;
         $deployJobId = Craft::$app->getSession()->get('deployJobId');
 
+        $settings = \Craft::$app->getModule('deployment')->getSettings();
 
         $ch_git = curl_init();
 
         curl_setopt($ch_git, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch_git, CURLOPT_HTTPHEADER, array('PRIVATE-TOKEN: oaz7fVaLKwpV-F5dPxfK', 'Content-Type: application/json'));
-        curl_setopt($ch_git, CURLOPT_URL, 'http://vines.smsglobal.local/api/v4/projects/103/jobs/'.$deployJobId.'/play');
+        curl_setopt($ch_git, CURLOPT_HTTPHEADER, array('PRIVATE-TOKEN: '. $settings->private_token, 'Content-Type: application/json'));
+        curl_setopt($ch_git, CURLOPT_URL, $settings->url . '/projects/'.$settings->project.'/jobs/'.$deployJobId.'/play');
         curl_setopt($ch_git, CURLOPT_POST, true);
         $res = curl_exec($ch_git);
         $response = json_decode($res);

@@ -16,12 +16,35 @@
 {% import "_includes/forms" as forms %}
 
 {% do view.registerAssetBundle("smsg\\deployment\\assetbundles\\deployment\\DeploymentAsset") %}
+{{ forms.textField({
+    label: 'Private Token',
+    instructions: 'Enter Gitlab Private Token',
+    id: 'private_token',
+    name: 'private_token',
+    value: settings['private_token']})
+}}
 
 {{ forms.textField({
-    label: 'Some Field',
-    instructions: 'Enter some setting here.',
-    id: 'someAttribute',
-    name: 'someAttribute',
-}
-)
+    label: 'Token',
+    instructions: 'Enter Gitlab Token',
+    id: 'token',
+    name: 'token',
+    value: settings['token']})
+}}
+
+{{ forms.textField({
+    label: 'Project ID',
+    instructions: 'Enter Gitlab Project ID',
+    id: 'project',
+    name: 'project',
+    value: settings['project']})
+}}
+
+
+{{ forms.textField({
+    label: 'URL',
+    instructions: 'Enter Gitlab URL',
+    id: 'url',
+    name: 'url',
+    value: settings['url']})
 }}

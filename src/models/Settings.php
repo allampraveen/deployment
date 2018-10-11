@@ -35,11 +35,34 @@ class Settings extends Model
     // =========================================================================
 
     /**
-     * Some field model attribute
+     * private token model attribute
      *
      * @var string
      */
-    public $someAttribute = 'Some Default';
+    public $private_token = '';
+    
+     /**
+     * token model attribute
+     *
+     * @var string
+     */
+    public $token = '';
+    
+    
+    /**
+     * project model attribute
+     *
+     * @var string
+     */
+    public $project = '';
+
+    /**
+     * url model attribute
+     *
+     * @var string
+     */
+    public $url = '';
+
 
     // Public Methods
     // =========================================================================
@@ -57,8 +80,14 @@ class Settings extends Model
     public function rules()
     {
         return [
-            ['someAttribute', 'string'],
-            ['someAttribute', 'default', 'value' => 'Some Default'],
+            ['token', 'string'],
+            ['token', 'default', 'value' => ''],
+            ['private_token', 'string'],
+            ['private_token', 'default', 'value' => ''],
+            ['project', 'string'],
+            ['project', 'default', 'value' => ''],
+            ['url', 'string'],
+            ['url', 'default', 'value' => ''],
         ];
     }
 }
